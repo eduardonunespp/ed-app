@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,20 +6,39 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnChanges {
-  name: string = 'test in view';
+  @Input() name: string = '';
+  @Output() alteraNomePai: EventEmitter<string> = new EventEmitter
+
   num: number = 0;
+  desabilitaCidadeInput: boolean = false
+  disabled: boolean = false
+  type: string = 'text'
+
+  cidade: string = ''
 
   constructor() {}
 
+  ngOnInit(): void {
+    this.name = this.name
+  }
+  
   handleClick = () => {
     this.num += 1;
   };
-
+  
   alteraNome = () => {
     this.name = 'sim';
+    this.alteraNomePai.emit('Eduardo')
   };
 
-  ngOnInit(): void {}
+  resetaCidade = () => {
+    this.cidade = ''
+  }
+
+  disableCidade = () => {
+    this.desabilitaCidadeInput = !this.desabilitaCidadeInput;
+  }
+
 
   ngOnChanges(changes: SimpleChanges): void {}
 }

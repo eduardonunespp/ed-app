@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/header/header.module').then((m) => m.HeaderModule),
   },
+  {
+    path: 'users',
+    loadChildren: () => import('./components/users/users.module').then((m) => m.UsersModule)
+  }
 ];
 
 @NgModule({
